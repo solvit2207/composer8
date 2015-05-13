@@ -1,0 +1,11 @@
+{
+    "name": "solvit2207/composer8",
+    "description": "smart",
+    "authors": [
+        {
+            "name": "solvit",
+            "email": "solvit@bk.ru"
+        }
+    ],
+    "require": {}
+}
