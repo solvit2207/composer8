@@ -425,10 +425,12 @@ public $region;
 public $allstreetName=array();
  
 public function __construct($name, $year, $coordinates, $region){
-$this->name=$name;
-$this->year=$year;
-$this->coordinates=$coordinates;
-$this->region=$region;
+$city=array("Киев","Москва","Питер","Самара");
+$name=array_rand($city);
+$this->name=$city[$name];
+$this->year=mt_rand(998,1873);
+$this->coordinates=mt_rand(168.263,187.574);
+$this->region="Европа";
 }
 public function about(){
 echo 'Название города: '.$this->name.'<br>';
