@@ -9,6 +9,6 @@
     ],
     "require": {},
 	"autoload":{
-		"classmap":"action.php"
+		"classmap":["action.php"]
 	}
 }
