@@ -232,7 +232,7 @@ public function population(){
 	return $pop; 
 }
 }
-$name=$year=$coordinates=$region=0;
+/*$name=$year=$coordinates=$region=0;
 $city= new city($name,$year,$coordinates, $region);
 echo $city->about();
 
@@ -251,7 +251,7 @@ echo "<br>Информация о случайно выбранной кварт
 $numberApp=$room=$flor=$squareApp=$balcony=$person=0;
 $app=new Appartment($numberApp, $room, $flor, $squareApp, $balcony, $person);
 $app->about();
-
+*/
 
 
 
