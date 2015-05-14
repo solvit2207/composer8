@@ -1,6 +1,6 @@
 <?php
 /////////////////////Appartment/////////////////////////////////////////////////////
-class Appartment{
+class Appartment extends Building{
 var $numberApp;
 var $room;
 var $flor;
@@ -56,7 +56,16 @@ function allRent(){
 		$this->allRentApp=$all;
 			return $all;
 }
-
+public function serialize () {
+  $objectData = array(
+	"numberApp"=>$this->numberApp,
+	"room"=>$this->room,
+	"flor"=>$this->flor,
+	"squareApp"=>$this->squareApp,
+	"balcony"=>$this->balcony,
+	"person"=>$this->person);
+  return json_encode($objectData);
+ }
 }
 
 ////////////////////////////Entrance//////////////////////////////////////////////////////////////////////
@@ -97,7 +106,7 @@ public $florBuilding;
 public $quantityApp;
 public $squareBuilding;		//площадь прилегаемой территории
 public $rentM;			//оплата за 1 м.к.
-public $allEntrance=array();
+public $allApp=array();
 
 
 public function __construct($streetName, $buildingNumber, $quantityEntrance, $florBuilding, $quantityApp, $squareBuilding, $rentM){
@@ -130,24 +139,26 @@ public function rentLand(){
 	$land=$this->squareBuilding*$this->rentM;
 		return $land;
 }
-public function addEntrance($ent){
-	$this->allEntrance[]=$ent;//добавляем подьезд в массив
+public function addApp($app){
+	$this->allApp[]=$app;//добавляем квартира в массив
 }
 public function rentBuilding(){
 	$sum=0;
-		for($i=0;$i<count($this->allEntrance);$i++){
-			$sum+=$this->allEntrance[$i]->entranceRent();	
+		for($i=0;$i<count($this->allApp);$i++){
+			$sum+=$this->allApp[$i]->allRent();	
 		}
 	return $sum;
 }
 public function population(){
 	$pop=0;
-	for($i=0;$i<count($this->allEntrance);$i++){
-		$pop+=$this->allEntrance[$i]->population();
+	for($i=0;$i<count($this->allApp);$i++){
+		$pop+=$this->allApp[$i]->person;
 	}
 	return $pop; 
 }
 }
+
+
 
 ///////////////////////streetName////////////////////////////////////////////////////////////////////////
 class streetName extends Building{
@@ -198,8 +209,10 @@ public function population(){
 	}
 	return $pop; 
 }
+
 }
 
+////////////////city//////////////////////////////
 class city{
 public $name;
 public $year;
@@ -231,27 +244,14 @@ public function population(){
 	}
 	return $pop; 
 }
+public function serialize () {
+  $objectData = array($this);
+  return json_encode($objectData);
+ }
 }
-/*$name=$year=$coordinates=$region=0;
-$city= new city($name,$year,$coordinates, $region);
-echo $city->about();
 
-echo "<br>Случайная улица: </br>";
-$streetNameName=$length=$startCoordinat=$finishCoordinat=0;
-$str=new streetName($streetNameName, $length, $startCoordinat, $finishCoordinat);
-echo $str->about();
-	
 
-echo "<br>Информация о случайно выбранном доме: </br>";
-	$streetName=$buildingNumber=$quantityEntrance=$florBuilding=$quantityApp=$squareBuilding=$rentM=0;
-	$b1=new Building($streetName, $buildingNumber, $quantityEntrance, $florBuilding, $quantityApp, $squareBuilding, $rentM);
-	echo $b1->aboutBuilding();
 
-echo "<br>Информация о случайно выбранной квартире: </br>";	
-$numberApp=$room=$flor=$squareApp=$balcony=$person=0;
-$app=new Appartment($numberApp, $room, $flor, $squareApp, $balcony, $person);
-$app->about();
-*/
 
 
 
